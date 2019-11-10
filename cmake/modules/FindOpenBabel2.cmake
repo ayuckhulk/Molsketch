@@ -23,12 +23,12 @@ else (OPENBABEL2_INCLUDE_DIRS AND OPENBABEL2_LIBRARIES)
     pkg_check_modules(OPENBABEL2 openbabel-2.0)
 
     # query pkg-config asking for a openbabel >= 2.1.0
-    exec_program(${PKG_CONFIG_EXECUTABLE} ARGS --atleast-version=2.1.0 openbabel-2.0 RETURN_VALUE _return_VALUE OUTPUT_VARIABLE _pkgconfigDevNull )
+    exec_program("${PKG_CONFIG_EXECUTABLE}" ARGS --atleast-version=2.1.0 openbabel-2.0 RETURN_VALUE _return_VALUE OUTPUT_VARIABLE _pkgconfigDevNull )
     if(_return_VALUE STREQUAL "0")
       set(OPENBABEL_MINI_FOUND TRUE)
     endif(_return_VALUE STREQUAL "0")
 
-    exec_program(${PKGCONFIG_EXECUTABLE} ARGS --variable=pkgincludedir openbabel-2.0 RETURN_VALUE _return_VALUE OUTPUT_VARIABLE _obPkgIncDir )
+    exec_program("${PKG_CONFIG_EXECUTABLE}" ARGS --variable=pkgincludedir openbabel-2.0 RETURN_VALUE _return_VALUE OUTPUT_VARIABLE _obPkgIncDir )
     if (_obPkgIncDir)
       set(OPENBABEL_INCLUDE_DIRS "${_obPkgIncDir}")
     endif (_obPkgIncDir)
@@ -42,7 +42,7 @@ else (OPENBABEL2_INCLUDE_DIRS AND OPENBABEL2_LIBRARIES)
     # minimal installation on unix / all windows
 
     find_path(OPENBABEL2_INCLUDE_DIR openbabel/obconversion.h
-      ${_obIncDir}
+      ${_obPkgIncDir}
       /usr/local/include
       /usr/local/include/openbabel-2.0
       /usr/include

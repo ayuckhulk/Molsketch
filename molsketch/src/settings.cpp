@@ -154,10 +154,10 @@ void SettingsDialog::browseCustomLibraryPath()
 
 void SettingsDialog::selectFont()
 {
-  bool * ok = false;
+  bool ok = false;
   QFont previousFont = ui.fontComboBox->currentFont();
   previousFont.setPointSizeF(ui.doubleSpinBoxFontSize->value());
-  QFont font = QFontDialog::getFont(ok, previousFont, this, "molsKetch - Select atomsymbol font");
+  QFont font = QFontDialog::getFont(&ok, previousFont, this, "molsKetch - Select atomsymbol font");
   if (ok) {
     ui.fontComboBox->setCurrentFont(font);
     ui.doubleSpinBoxFontSize->setValue(font.pointSizeF());

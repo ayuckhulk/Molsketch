@@ -19,8 +19,9 @@ if (CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align") 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fno-check-new -fno-common")
-  add_definitions(-D_BSD_SOURCE)
+  add_definitions(-D_DEFAULT_SOURCE)
 endif (CMAKE_COMPILER_IS_GNUCXX)
+set (CMAKE_CXX_STANDARD 11)
 
 # Enable CPack
 set(CPACK_PACKAGE_VERSION_MAJOR "0")

@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtGui>
-#include <QAssistantClient>
 #include <QGridLayout>
 
 #include "mainwindow.h"
@@ -161,7 +160,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
   if (maybeSave())
     {
       writeSettings();
-      if (assistantClient) assistantClient->closeAssistant();
+      //if (assistantClient) assistantClient->closeAssistant();
       event->accept();
     }
   else
@@ -490,7 +489,7 @@ void MainWindow::assistant()
   QFileInfo file(ALT_DOC_PATH + QString("/index.html"));
   if (!file.exists()) file.setFile(QApplication::applicationDirPath() + "/doc/en/index.html");
   if (!file.exists()) file.setFile(QApplication::applicationDirPath() + "/../share/doc/molsketch/doc/en/index.html");
-  assistantClient->showPage(file.absoluteFilePath());
+  //assistantClient->showPage(file.absoluteFilePath());
 }
 
 
@@ -956,7 +955,8 @@ void MainWindow::createView()
 
 void MainWindow::initializeAssistant()
 {
-  assistantClient = new QAssistantClient("", this);
+  //assistantClient = new QAssistantClient("", this);
+  assistantClient = nullptr;
 
   QStringList arguments;
   QFileInfo file(ALT_DOC_PATH + QString("/molsketch.adp"));
@@ -964,7 +964,7 @@ void MainWindow::initializeAssistant()
   if (!file.exists()) file.setFile(QApplication::applicationDirPath() + "/../share/doc/molsketch/doc/en/molsketch.adp");
 
   arguments << "-profile" << file.absoluteFilePath();
-  assistantClient->setArguments(arguments);
+  //assistantClient->setArguments(arguments);
 }
 
 // Auxillary methods
